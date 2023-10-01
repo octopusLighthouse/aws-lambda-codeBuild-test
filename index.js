@@ -21,17 +21,3 @@ function buildResponse(statusCode, body) {
         body: JSON.stringify(body),
     }
 }
-
-async function scanDynamoRecords(scanParams, itemArray) {
-    try {
-        const dynamoData = await dynamodb.scan(scanParams).promise();
-        itemArray = itemArray.concat(dynamoData.Items);
-        if (dynamoData.LastEvaluateKey) {
-            scanParams.ExclusiveStartkey = dynamoData.LastEvaluateKey;
-            return await scanDynamoRecords(scanParams, itemArray);
-        }
-        return itemArray;
-    } catch (error) {
-        console.error('Your error handling here');
-    }
-}
