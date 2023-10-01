@@ -1,3 +1,4 @@
+const healthPath = '/health';
 exports.handler = async function(event) {
     console.log('Request event:', event);
     let response;
