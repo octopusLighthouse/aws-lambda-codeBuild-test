@@ -8,7 +8,7 @@ exports.handler = async function(event) {
             break;
 
         default:
-            response = buildResponse(404, '404, Not Found');
+            response = buildResponse(404, `404, Not Found, event path: ${event.path}`);
     }
     return response;
 }
