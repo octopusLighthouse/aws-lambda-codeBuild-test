@@ -150,7 +150,7 @@ async function modifyProduct(id, key, value) {
     )
 }
 
-async function deleteProduct(product) {
+async function deleteProduct(id) {
     const params = {
         TableName: dynamodbTableName,
         Key: {
