@@ -9,17 +9,18 @@ phases:
   pre_build:
     commands:
       - echo "Installing source NPM dependencies..."
-      - npm install
+      # - npm install
   build:
     commands:
       - echo "Zipping deployment package..."
       - ls -lap
-      - cd lib
-      - zip -r9 ../deployment_package.zip .
-      - cd ..
-      - zip -g deployment_package.zip lambda_function.js
+      # - cd lib
+      # - zip -r9 ../deployment_package.zip .
+      # - cd ..
+      # - zip -g deployment_package.zip lambda_function.js
   post_build:
     commands:
       - echo "Updating lambda Function..."
-      - aws lambda update-function-code --function-name aws-lambda-codeBuild-test --zip-file fileb://deployment_package.zip
+      - aws lambda update-function-code --function-name aws-lambda-codeBuild-test lambda_function.js
+      # --zip-file fileb://deployment_package.zip
       - echo "DONE!! :)))"
