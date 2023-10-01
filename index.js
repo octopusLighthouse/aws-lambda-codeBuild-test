@@ -1,6 +1,6 @@
 const healthPath = '/health';
 exports.handler = async function(event) {
-    console.log('Request event:', event);
+    console.log('Request event:', JSON.stringify(event));
     let response;
     switch(true) {
         case event.httpMethod === 'GET' && event.path === healthPath:
