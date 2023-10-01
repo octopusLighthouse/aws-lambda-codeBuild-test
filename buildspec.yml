@@ -21,6 +21,6 @@ phases:
     commands:
       - echo "Updating lambda Function..."
       - ls -lap
-      - aws lambda update-function-code --function-name aws-lambda-codeBuild-test ./zipped_source.js
+      - aws lambda update-function-code --function-name aws-lambda-codeBuild-test ./zipped_source.zip
       # --zip-file fileb://deployment_package.zip
       - echo "DONE!! :)))"
