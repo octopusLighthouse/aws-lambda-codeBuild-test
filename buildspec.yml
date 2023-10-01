@@ -1,0 +1,25 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo "Installing dependencies... NodeJs 18"
+      # - npm install -g mocha
+  pre_build:
+    commands:
+      - echo "Installing source NPM dependencies..."
+      - npm install
+  build:
+    commands:
+      - echo "Zipping deployment package..."
+      - ls -lap
+      - cd lib
+      - zip -r9 ../deployment_package.zip .
+      - cd ..
+      - zip -g deployment_package.zip lambda_function.js
+  post_build:
+    commands:
+      - echo "Updating lambda Function..."
+      - aws lambda update-function-code --function-name aws-lambda-codeBuild-test --zip-file fileb://deployment_package.zip
+      - echo "DONE!! :)))"
